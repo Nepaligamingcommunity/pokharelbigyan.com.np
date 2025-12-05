@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bigyan Pokharel | Backend Developer & Student</title>
+    <meta name="description" content="Official website of Bigyan Pokharel, a professional Node.js Backend Developer and +2 Student.">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS for the single-file HTML */
+        :root {
+            --primary-color: #3f51b5; /* Indigo */
+            --secondary-color: #f44336; /* Red */
+            --background-color: #f8f9fa;
+            --text-color: #333;
+            --card-background: #ffffff;
+            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --border-radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--card-background);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+            padding: 40px;
+        }
+
+        /* Header and Hero Section */
+        .header {
+            text-align: center;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: var(--primary-color);
+            font-size: 2.5em;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            color: #666;
+            font-weight: 300;
+        }
+
+        /* Section Styling */
+        section {
+            margin-bottom: 40px;
+        }
+
+        section h2 {
+            font-size: 1.8em;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            border-bottom: 3px solid var(--secondary-color);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-item {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: transform 0.3s, background-color 0.3s;
+            box-shadow: var(--shadow-light);
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+            background-color: #303f9f;
+        }
+
+        /* Contact and Footer */
+        .contact-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: var(--secondary-color);
+        }
+
+        .footer {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="header">
+            <h1>Bigyan Pokharel</h1>
+            <p>Professional Backend Developer & +2 Student</p>
+        </header>
+
+        <section id="about">
+            <h2>👋 About Me</h2>
+            <p>
+                I am a highly motivated **professional backend developer** specializing in **Node.js**. 
+                My passion lies in building efficient, scalable, and robust server-side applications and APIs. 
+                I am currently furthering my academic knowledge as a +2 student, balancing my studies with hands-on development experience. 
+                I strive to combine academic learning with practical industry skills to solve real-world problems.
+            </p>
+        </section>
+
+        <section id="skills">
+            <h2>💻 Technical Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-item">Node.js (Expert)</div>
+                <div class="skill-item">JavaScript (ES6+)</div>
+                <div class="skill-item">Python</div>
+                <div class="skill-item">PHP</div>
+                <div class="skill-item">API Development (REST)</div>
+                <div class="skill-item">Database Management</div>
+            </div>
+        </section>
+
+        <section id="connect">
+            <h2>🔗 Connect & Portfolio</h2>
+            <p class="contact-info">
+                You can view my social and professional profile here:
+                <br>
+                **Facebook Profile:** <a href="https://www.facebook.com/Bigyanpokharel037/" target="_blank">Bigyanpokharel037</a>
+                <br>
+                **(Suggestion: Consider adding a GitHub/Portfolio link for showcasing code!)**
+            </p>
+        </section>
+
+        <section id="contact">
+            <h2>📧 Get In Touch</h2>
+            <p class="contact-info">
+                I am open to collaborations and discussing new opportunities. Feel free to reach out:
+                <br>
+                **Email:** <a href="mailto:contact@pokharelbigyan.com.np">contact@pokharelbigyan.com.np</a>
+            </p>
+        </section>
+
+        <footer class="footer">
+            <p>&copy; 2025 Bigyan Pokharel. All Rights Reserved. | Domain: pokharelbigyan.com.np</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
