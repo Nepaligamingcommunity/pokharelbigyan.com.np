@@ -1,1 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Phylum Porifera — Presentation</title>
+  <style>
+    :root{
+      --bg:#001219;
+      --card:#001f29;
+      --accent:#00b4d8;
+      --text:#edf6f9
+    }
+    html,body{
+      height:100%;
+      margin:0;
+      font-family:"Poppins", system-ui, sans-serif
+    }
+    body{
+      background:radial-gradient(circle at top,#003545,#001219 80%);
+      color:var(--text);
+      display:flex;
+      align-items:center;
+      justify-content:center
+    }
+    .deck{
+      width:100%;
+      max-width:1100px;
+      height:85vh;
+      position:relative;
+      overflow:hidden;
+      border-radius:16px;
+      box-shadow:0 25px 60px rgba(0,0,0,.65);
+      background:rgba(255,255,255,.03);
+      padding:30px
+    }
+    .slide{
+      position:absolute;inset:0;
+      padding:48px;display:flex;
+      flex-direction:column;
+      gap:18px;
+      transform:translateX(120%);
+      opacity:0;
+      transition:all .5s ease
+    }
+    .slide.active{
+      transform:translateX(0);
+      opacity:1
+    }
+    .slide.exit-left{
+      transform:translateX(-120%);
+      opacity:0
+    }
+    h1{
+      font-size:40px;
+      margin:0;
+      color:var(--accent)
+    }
+    h2{
+      font-size:26px;
+      margin:0;
+      color:var(--accent)
+    }
+    h3 { /* Style for Phylum title */
+        font-size: 24px;
+        color: var(--text);
+        margin: 0;
+    }
+    h4 { /* Style for Class titles */
+        font-size: 20px;
+        color: var(--accent);
+        margin-top: 20px;
+        margin-bottom: 5px;
+    }
+    p{
+      margin:0;
+      font-size:18px;
+      line-height:1.5
+    }
+    ul{
+      margin:0;
+      padding-left:1.2rem;
+      font-size:18px
+    }
+    /* Removed: .taxonomy-classes li { list-style: none; } */
+    img {
+      max-width: 100%;
+      max-height: 400px;
+      object-fit: contain;
+      border-radius: 12px;
+      margin-top: 10px;
+      align-self: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+    .controls{
+      position:absolute;
+      right:18px;
+      top:18px;
+      display:flex;
+      gap:8px
+    }
+    button.icon{
+      background:rgba(255,255,255,.05);
+      border:none;
+      color:var(--text);
+      padding:8px 14px;
+      border-radius:8px;
+      cursor:pointer;
+      font-size:15px;
+      backdrop-filter:blur(6px)
+    }
+    .pager{
+      position:absolute;
+      right:28px;
+      bottom:18px;
+      color:rgba(237,246,249,.7);
+      font-size:14px
+    }
 
+     .quiz-container { margin-top: 10px; }
+    .question { font-weight: 600; color: var(--accent); margin-bottom: 5px; }
+    .answer-box {
+      background: rgba(255,255,255,0.1);
+      border: 1px dashed var(--accent);
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: center;
+      transition: 0.3s;
+    }
+    .answer-box:hover { background: rgba(255,255,255,0.15); }
+    .answer-text { display: none; color: #fff; font-weight: bold; }
+    .answer-box.revealed .answer-text { display: block; }
+    .answer-box.revealed .placeholder { display: none; }
+
+    .controls{ position:absolute; right:18px; top:18px; display:flex; gap:8px; z-index: 100; }
+    button.icon{
+      background:rgba(255,255,255,.05); border:none; color:var(--text);
+      padding:8px 14px; border-radius:8px; cursor:pointer; backdrop-filter:blur(6px)
+    }
+    @media (max-width:720px){.deck{height:90vh;padding:16px}.slide{padding:18px}h1{font-size:28px}p,ul{font-size:16px}}
+  </style>
+</head>
+<body>
+  <div class="deck" id="deck">
+
+    
+   <section class="slide active" data-index="1">
+  <h2>Introduction to Phylum Porifera</h2>
+  <ul>
+    <li><strong>History:</strong>  The sponge has a history that dates back over 600 million years and is found in all depths of water.</li>
+    <br>
+    <li><strong>Specialized cells:</strong> They are the simplest multicellular creatures; they lack a brain and a heart and muscles; they are composed of special cells such as archaeocytes, amoebocytes, and pinacocytes.</li>
+    <br>
+    <li><strong>Water Canal Systems:</strong> These are fed by a filtering of water through a canal system that may be of ascon, sycon, or leucon types with a skeletal support of mineral spicules or spongin.</li>
+    <br>
+    <li><strong>Reproductive capacity:</strong> Porifera can reproduce both sexually and asexually and have a remarkably high biological capacity for regeneration of lost or damaged parts.</li>
+    <br>
+    <li><strong>Ecological Symbiosis:</strong> These primitive organisms frequently form vital symbiotic associations with other marine life, acting as essential components of their underwater ecosystems.</li>
+  </ul>
+</section>
+
+  <section class="slide" data-index="2">
+       <center><h1>Do you know?</h21></center>
+      <div class="quiz-container">
+        <h3><div class="question">1. What is the maximum lifespan of a sea sponge?</div></h3>
+        <div class="answer-box" onclick="this.classList.toggle('revealed')">
+          <span class="placeholder">answer</span>
+          <span class="answer-text">15000 to 23000 years</span>
+        </div>
+      </div>
+
+      <div class="quiz-container">
+        <h3><div class="question">2. Why porifera are called "Ocean's Giant Vacuum"</div></h3>
+        <div class="answer-box" onclick="this.classList.toggle('revealed')">
+          <span class="placeholder">answer</span>
+          <span class="answer-text">1 sponge can filter 100,000 times its own volume of water daily.</span>
+        </div>
+      </div>
+
+      <div class="quiz-container">
+        <h3><div class="question">3. How porifera regulate their body perhaps they don't have brain?</div></h3>
+        <div class="answer-box" onclick="this.classList.toggle('revealed')">
+          <span class="placeholder">answer</span>
+          <span class="answer-text">Go search on google</span>
+        </div>
+      </div>
+    </section>
+  </section>
+    
+    <section class="slide" data-index="3">
+  <h2>Sub-phyla Classification</h2>
+
+  <div class="taxonomy">
+    <h3 class="level-tax1">
+      &sext; Phylum <strong>Porifera</strong> <span>(Sponges)</span>
+    </h3>
+    <p class="main-class-def">
+The taxonomy of Phylum Porifera is mainly based on the chemical composition of the skeletal spicules and the general structural framework of the animal, on which four main classes are recognized.    </p>
+  </div>
+
+      <h4 class="level-tax2"><strong>Class Calcarea</strong></h4>
+      <ul>
+        <li>Skeleton composed of <b>calcium carbonate spicules</b>.</li>
+        <li>Body form may be <b>vase-shaped</b>, <b>thin tubular networks</b>, or <b>irregular and massive</b>.</li>
+        <li>Mostly <b>small-sized</b> sponges.</li>
+        <li>Inhabit <b>shallow waters of all seas</b>, from intertidal zones to about <b>200 m.</b></li>
+        <li>Some species occur as deep as <b>800 m.</b></li>
+        <li>Approximately <b>300 species</b> are known.</li>
+      </ul>
+      <center><img src="Calcarea.png" width="600" length="500"></center>
+</section>
+
+  <section class="slide" data-index="4">
+      <h4 class="level-tax2"><strong>Class Hexactinellida (Hyalospongiae)</strong></h4>
+      <ul>
+        <li>Skeleton is distinctively composed of <b>six-rayed siliceous spicules</b> (slilca). </li>
+        <li>They are <b>exclusively marine</b> and typically inhabit <b>deep waters</b>, ranging from <b>25 to 8,500 m</b>.</li>
+        <li>Most species attach to hard substrates, but some are found in soft sediments.</li>
+        <li>Key examples include <u>Hexactinella</u>, <u>Euplectella</u> (Venus' flower basket), and <u>Farrea</u>. </li>
+        <li>Approximately <b>500 species</b> are known in this class.</li>
+        <center><img src="Hexactinellida.png" width="800" length="700"></center>
+      </ul>
+  </section>
+
+  <section class="slide" data-index="5">
+      <h4 class="level-tax2"><strong>Class Demospongiae</strong></h4>
+      <ul>
+        <li>Skeleton is typically composed of <b>silica spicules</b>, <b>spongin fibers</b>, or a combination of both; some species entirely lack a skeleton.</li>
+        <li>It is the largest class of sponges; there are about <b>4,200</b> species..</li>
+        <li>Exist in a variety of ocean environments, ranging from shallow to very deep water (<b>5,500 m</b> depth).</li>
+        <li>Includes the <b>freshwater sponges</b> (Family <b>Spongillidae</b>). </li>
+        <li>Body size and form are highly variable, ranging from small patches to massive structures over <b>2 m</b> wide.</li>
+      </ul>
+      <center><img src="Demospongiae.png" width="600" length="500"></center>
+  </section>
+    
+
+  <section class="slide" data-index="6">
+      <h4 class="level-tax2"><strong>Class Homoscleromorpha</strong></h4>
+      <ul>
+        <li>Skeletal absent or made up of simple siliceous <b>spicules</b></li>
+        <li><b>Exclusively marine</b> sponges</li>
+        <li>Mostly found in <b>shallow coastal waters</b>, attached to hard substrates</li>
+        <li><b>Body form</b> small, thin, encrusting, or cushion-like</li>
+        <li>Have <b>true epithelial tissues with a basement membrane</b> to indicate advanced cellular organization</li>
+        <li><b>Canal system</b> is <b>leuconoid</b></li>
+        <li>Comprises approximately <b>100 species</b></li>
+      </ul>
+      <center><img src="Homoscleromorpha.png" width="600" length="500"></center>
+  </section>
+
+    <section class="slide" data-index="7">
+      <h2>Key Features</h2>
+      <ul>
+        <li>No true tissues or organs — only cells</li>
+        <li>Asymmetrical body but some are radially symmetrical</li>
+        <li>Mostly marine but some are freshwater (<u>Spongilla</u>)</li>
+        <li>Body surface contains numerous minute pores called <b>ostia</b> and few large pores called <b>osculum</b>.</li>
+        <li>Respire through general body surface</li>
+        <li>Reproduce asexually by budding and regeneration, but sexually by gametes</li>
+        <li>They are sessile, and mode of nutrition is holozoic</li>
+      </ul>
+    </section>
+
+    <section class="slide" data-index="8">
+      <h2>The Water Canal System</h2>
+      <p>Poriferans are nature’s water pumps. Water flows through <b>ostia</b> (tiny pores), travels through canals and chambers powered by <b>choanocytes</b>, and exits through a larger opening called the <b>osculum</b>.</p>
+      <center><img src="watercanalsystem.jpg" width="400" length="400"></center>
+    </section>
+
+    <section class="slide" data-index="9">
+        <h2>Specialized Cells</h2>
+        <ul>
+            <li><b>Choanocytes</b> — have tiny whip-like tails to move water and catch food </li>
+            <li><b>Amoebocytes</b> — carry nutrients around and help build the skeleton</li>
+            <li><b>Pinacocytes</b> — flat cells that form the outer layer and protect the sponge</li>
+        </ul>
+        <center><img src="Cell-types-1.png" length=600px width=600px></center>
+    </section>
+
+    <section class="slide" data-index="10">
+      <h2>Body Plan Types</h2>
+      <ul>
+        <li><b>Asconoid</b> — simplest tube-like design</li>
+        <li><b>Syconoid</b> — folded walls increase surface area</li>
+        <li><b>Leuconoid</b> — most complex, very efficient filtering</li>
+      </ul>
+      <center><img src=" body-plane.png" length=600px width=600px></center>
+    </section>
+
+    <section class="slide" data-index="11">
+      <h2>Reproduction</h2>
+      <ul>
+        <li>Asexual — budding, fragmentation, gemmules </li>
+        <li>Sexual — most are hermaphrodites; produce swimming larvae</li>
+      </ul>
+      <center><img src="porifera-reproduction.png" length=600px width=600px></center>
+    </section>
+
+    <section class="slide" data-index="12">
+      <h2>Diversity Summary</h2>
+      <ul>
+        <li><b>Calcarea</b> — lime sponges (e.g., <u>Sycon</u>)</li>
+        <li><b>Hexactinellida</b> — glass sponges with delicate silica skeletons</li>
+        <li><b>Demospongiae</b> — the largest group of sponges; includes marine and freshwater species (like bath sponges).</li>
+<li><b>Homoscleromorpha</b> — small group of marine sponges; known for having simple siliceous spicules, leuconoid canal systems, and unique true tissues with a basement membrane.</li>      </ul>
+    </section>
+
+    <section class="slide" data-index="13">
+      <h2>Ecological and Economic Importance</h2>
+      <ul>
+        <li>Filter water and help maintain clean marine ecosystems</li>
+        <li>Provide habitats and shelter for small marine animals</li>
+        <li>Some species are harvested for commercial use (e.g., bath sponges)</li>
+        <li>Are a potential source of unique <b>bioactive chemical compounds</b> for new medicines</li>
+      </ul>
+    </section>
+
+<section class="slide" data-index="14" style="text-align: center; justify-content: center; align-items: center;">
+      <div style="margin-bottom: 40px;">
+        <h1 style="font-size: 50px; margin-bottom: 10px;">Thank You!</h1>
+        <div style="height: 4px; width: 80px; background: var(--accent); margin: 0 auto; border-radius: 2px;"></div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 30px; width: 100%;">
+        <div class="credit-box">
+          <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 14px; color: var(--accent); margin-bottom: 5px;">Submitted To</p>
+          <h2 style="font-size: 32px; margin: 0;">Mr. Devendra P. Dhakal</h2>
+        </div>
+
+        <div class="credit-box">
+          <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 14px; color: var(--accent); margin-bottom: 5px;">Presented By</p>
+          <h3 style="font-size: 28px; margin: 0; color: var(--text);">Bigyan Pokharel <span style="opacity: 0.6;">(_37)</span></h3>
+        </div>
+      </div>
+    </section>
+
+    <div class="controls">
+      <button class="icon" onclick="prev()">◀ Prev</button>
+      <a href="https://pokharelbigyan.com.np/" style="text-decoration: none; color: inherit;"><button class="icon">← Back</button></a>
+      <button class="icon" onclick="next()">Next ▶</button>
+    </div>
+    <div class="pager" id="pager">1 / 14</div>
+  </div>
+
+  
+<script>
+      const slides = Array.from(document.querySelectorAll('.slide'));
+    let index = 0;
+
+    function update() {
+      slides.forEach((s,i)=>{ 
+        s.classList.remove('active','exit-left'); 
+        if(i<index) s.classList.add('exit-left');
+      });
+      slides[index].classList.add('active');
+      document.getElementById('pager').textContent = (index+1) + ' / ' + slides.length;
+    }
+
+    function next(){ if(index < slides.length-1){ index++; update(); }}
+    function prev(){ if(index > 0){ index--; update(); }}
+
+    document.addEventListener('keydown', e => {
+      if(e.key==='ArrowRight') next();
+      if(e.key==='ArrowLeft') prev();
+    });
+
+    update();
+</script>
+</body>
+</html>
