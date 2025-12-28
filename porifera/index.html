@@ -14,7 +14,8 @@
     html,body{
       height:100%;
       margin:0;
-      font-family:"Poppins", system-ui, sans-serif
+      font-family:"Poppins", system-ui, sans-serif;
+      overflow: hidden; /* Prevent scrollbars on projector */
     }
     body{
       background:radial-gradient(circle at top,#003545,#001219 80%);
@@ -24,21 +25,22 @@
       justify-content:center
     }
     .deck{
-      width:100%;
-      max-width:1100px;
-      height:85vh;
+      width:95%;
+      max-width:1400px; /* Increased width for projector */
+      height:90vh;
       position:relative;
       overflow:hidden;
       border-radius:16px;
       box-shadow:0 25px 60px rgba(0,0,0,.65);
       background:rgba(255,255,255,.03);
-      padding:30px
+      padding:40px
     }
     .slide{
       position:absolute;inset:0;
-      padding:48px;display:flex;
+      padding:60px; /* More padding for readability */
+      display:flex;
       flex-direction:column;
-      gap:18px;
+      gap:24px;
       transform:translateX(120%);
       opacity:0;
       transition:all .5s ease
@@ -51,156 +53,277 @@
       transform:translateX(-120%);
       opacity:0
     }
+    /* ENLARGED TEXT SIZES FOR PROJECTOR */
     h1{
-      font-size:40px;
+      font-size:64px;
       margin:0;
       color:var(--accent)
     }
     h2{
-      font-size:26px;
+      font-size:48px;
       margin:0;
-      color:var(--accent)
+      color:var(--accent);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 10px;
     }
-    h3 { /* Style for Phylum title */
-        font-size: 24px;
-        color: var(--text);
-        margin: 0;
+    h3 { 
+      font-size: 36px;
+      color: var(--text);
+      margin: 0;
     }
-    h4 { /* Style for Class titles */
-        font-size: 20px;
-        color: var(--accent);
-        margin-top: 20px;
-        margin-bottom: 5px;
+    h4 { 
+      font-size: 32px;
+      color: var(--accent);
+      margin-top: 10px;
+      margin-bottom: 5px;
     }
     p{
       margin:0;
-      font-size:18px;
-      line-height:1.5
+      font-size:28px;
+      line-height:1.6
     }
     ul{
       margin:0;
-      padding-left:1.2rem;
-      font-size:18px
+      padding-left:2rem;
+      font-size:28px;
+      line-height:1.6
     }
-    /* Removed: .taxonomy-classes li { list-style: none; } */
+    li {
+      margin-bottom: 12px;
+    }
     img {
       max-width: 100%;
-      max-height: 400px;
+      max-height: 450px;
       object-fit: contain;
       border-radius: 12px;
-      margin-top: 10px;
+      margin-top: 20px;
       align-self: center;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
     }
     .controls{
       position:absolute;
-      right:18px;
-      top:18px;
+      right:30px;
+      top:30px;
       display:flex;
-      gap:8px
+      gap:12px;
+      z-index: 10;
     }
     button.icon{
-      background:rgba(255,255,255,.05);
-      border:none;
+      background:rgba(255,255,255,.1);
+      border: 1px solid var(--accent);
       color:var(--text);
-      padding:8px 14px;
+      padding:12px 20px;
       border-radius:8px;
       cursor:pointer;
-      font-size:15px;
+      font-size:18px;
       backdrop-filter:blur(6px)
     }
     .pager{
       position:absolute;
-      right:28px;
-      bottom:18px;
+      right:40px;
+      bottom:30px;
       color:rgba(237,246,249,.7);
-      font-size:14px
+      font-size:20px
     }
 
-     .quiz-container { margin-top: 10px; }
-    .question { font-weight: 600; color: var(--accent); margin-bottom: 5px; }
-    .answer-box {
-      background: rgba(255,255,255,0.1);
-      border: 1px dashed var(--accent);
-      padding: 10px;
-      border-radius: 8px;
-      cursor: pointer;
-      text-align: center;
-      transition: 0.3s;
+    .split-layout {
+      flex-direction: row !important;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
     }
-    .answer-box:hover { background: rgba(255,255,255,0.15); }
-    .answer-text { display: none; color: #fff; font-weight: bold; }
-    .answer-box.revealed .answer-text { display: block; }
-    .answer-box.revealed .placeholder { display: none; }
+    .content-left {
+      flex: 1;
+    }
+    .image-right {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+    .image-right img {
+      max-width: 100%;
+      max-height: 70vh;
+      border: 3px solid var(--accent);
+    }
+    .indicator-container {
+  position: absolute;
+  bottom: 25px; 
+  left: 30px;   
+  z-index: 10;
+  background: rgba(0, 180, 216, 0.1); 
+  padding: 8px;
+  border-radius: 4px; 
+  border-left: 4px solid var(--accent); 
+  backdrop-filter: blur(4px);
+}
 
-    .controls{ position:absolute; right:18px; top:18px; display:flex; gap:8px; z-index: 100; }
-    button.icon{
-      background:rgba(255,255,255,.05); border:none; color:var(--text);
-      padding:8px 14px; border-radius:8px; cursor:pointer; backdrop-filter:blur(6px)
-    }
-    @media (max-width:720px){.deck{height:90vh;padding:16px}.slide{padding:18px}h1{font-size:28px}p,ul{font-size:16px}}
+.indicator-img {
+  display: block;
+  height: 50px;      
+  width: auto;       
+  object-fit: contain;
+}
+.quiz-container {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(0, 180, 216, 0.3);
+  transition: all 0.3s ease;
+}
+
+.question {
+  color: var(--accent);
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.answer-box {
+  background: #002d3d;
+  padding: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border: 2px dashed var(--accent);
+}
+
+.answer-box .placeholder {
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent);
+}
+
+.answer-box .answer-text {
+  display: none;
+  font-size: 26px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.answer-box.revealed {
+  background: var(--accent);
+  border-style: solid;
+}
+
+.answer-box.revealed .placeholder {
+  display: none;
+}
+
+.answer-box.revealed .answer-text {
+  display: block;
+}
+.credit-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.credit-card {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 180, 216, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease;
+}
+
+.credit-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--accent);
+}
+
+.thank-you-title {
+  font-size: 80px !important;
+  background: linear-gradient(to bottom, #fff, var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 0 20px rgba(0, 180, 216, 0.3));
+}
   </style>
 </head>
 <body>
   <div class="deck" id="deck">
 
+    <section class="slide active" data-index="1" style="flex-direction: row; align-items: center; gap: 40px;">
     
-   <section class="slide active" data-index="1">
-  <h2>Introduction to Phylum Porifera</h2>
-  <ul>
-    <li><strong>History:</strong>  The sponge has a history that dates back over 600 million years and is found in all depths of water.</li>
-    <br>
-    <li><strong>Specialized cells:</strong> They are the simplest multicellular creatures; they lack a brain and a heart and muscles; they are composed of special cells such as archaeocytes, amoebocytes, and pinacocytes.</li>
-    <br>
-    <li><strong>Water Canal Systems:</strong> These are fed by a filtering of water through a canal system that may be of ascon, sycon, or leucon types with a skeletal support of mineral spicules or spongin.</li>
-    <br>
-    <li><strong>Reproductive capacity:</strong> Porifera can reproduce both sexually and asexually and have a remarkably high biological capacity for regeneration of lost or damaged parts.</li>
-    <br>
-    <li><strong>Ecological Symbiosis:</strong> These primitive organisms frequently form vital symbiotic associations with other marine life, acting as essential components of their underwater ecosystems.</li>
-  </ul>
+    <div style="flex: 1;">
+        <h2>Introduction</h2>
+        <ul>
+            <li>Primitive aquatic animals inhabiting environments from shallow to deep waters (8,500m+)</li>
+            <li>Feed by filtering water through a system of canals</li>
+            <li>Body composed of archaeocytes, pinacocytes, and collencytes</li>
+            <li>Water canal system variations: ascon, sycon, and leucon</li>
+            <li>Skeleton is made of mineral spicules or spongin</li>
+            <li>High capacity for regeneration</li>
+        </ul>
+    </div>
+
+    <div style="flex: 1; display: flex; justify-content: center;">
+        <img src="../images/porifera-bundle.png" 
+             style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+    </div>
+
 </section>
 
-  <section class="slide" data-index="2">
-       <center><h1>Do you know?</h21></center>
-      <div class="quiz-container">
-        <h3><div class="question">1. What is the maximum lifespan of a sea sponge?</div></h3>
-        <div class="answer-box" onclick="this.classList.toggle('revealed')">
-          <span class="placeholder">answer</span>
-          <span class="answer-text">15000 to 23000 years</span>
-        </div>
-      </div>
+    <section class="slide" data-index="2" style="justify-content: flex-start; gap: 30px;">
+  <h2 style="text-align: center;">Taxonomic Hierarchy</h2>
 
-      <div class="quiz-container">
-        <h3><div class="question">2. Why porifera are called "Ocean's Giant Vacuum"</div></h3>
-        <div class="answer-box" onclick="this.classList.toggle('revealed')">
-          <span class="placeholder">answer</span>
-          <span class="answer-text">1 sponge can filter 100,000 times its own volume of water daily.</span>
-        </div>
-      </div>
-
-      <div class="quiz-container">
-        <h3><div class="question">3. How porifera regulate their body perhaps they don't have brain?</div></h3>
-        <div class="answer-box" onclick="this.classList.toggle('revealed')">
-          <span class="placeholder">answer</span>
-          <span class="answer-text">Go search on google</span>
-        </div>
-      </div>
-    </section>
-  </section>
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
     
-    <section class="slide" data-index="3">
-  <h2>Sub-phyla Classification</h2>
+    <div style="background: var(--accent); color: var(--bg); padding: 10px 30px; border-radius: 8px; font-weight: bold; font-size: 32px; border: 2px solid white;">
+      Kingdom: Animalia
+    </div>
+    <div style="width: 4px; height: 30px; background: var(--accent);"></div>
 
-  <div class="taxonomy">
-    <h3 class="level-tax1">
-      &sext; Phylum <strong>Porifera</strong> <span>(Sponges)</span>
-    </h3>
-    <p class="main-class-def">
-The taxonomy of Phylum Porifera is mainly based on the chemical composition of the skeletal spicules and the general structural framework of the animal, on which four main classes are recognized.    </p>
+    <div style="border: 2px solid var(--accent); padding: 10px 30px; border-radius: 8px; font-weight: bold; font-size: 36px; color: var(--accent);">
+      Phylum: Porifera
+    </div>
+    <div style="width: 4px; height: 30px; background: var(--accent);"></div>
+
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; width: 100%;">
+      
+      <div style="background: rgba(0, 180, 216, 0.1); border: 1px solid var(--accent); padding: 15px; border-radius: 8px; text-align: center;">
+        <h4 style="margin:0; font-size: 24px;">Calcarea</h4>
+        <p style="font-size: 18px; margin-top: 5px;">Calcareous spicules</p>
+      </div>
+
+      <div style="background: rgba(0, 180, 216, 0.1); border: 1px solid var(--accent); padding: 15px; border-radius: 8px; text-align: center;">
+        <h4 style="margin:0; font-size: 24px;">Hexactinellida</h4>
+        <p style="font-size: 18px; margin-top: 5px;">Glass sponges</p>
+      </div>
+
+      <div style="background: rgba(0, 180, 216, 0.1); border: 1px solid var(--accent); padding: 15px; border-radius: 8px; text-align: center;">
+        <h4 style="margin:0; font-size: 24px;">Demospongiae</h4>
+        <p style="font-size: 18px; margin-top: 5px;">Spongin fibers</p>
+      </div>
+
+      <div style="background: rgba(0, 180, 216, 0.1); border: 1px solid var(--accent); padding: 15px; border-radius: 8px; text-align: center;">
+        <h4 style="margin:0; font-size: 24px;">Homoscleromorpha</h4>
+        <p style="font-size: 18px; margin-top: 5px;">True tissue layer</p>
+      </div>
+
+    </div>
   </div>
 
-      <h4 class="level-tax2"><strong>Class Calcarea</strong></h4>
-      <ul>
+  <p style="font-size: 24px; text-align: center; margin-top: 20px; color: #aaa;">
+    Classified primarily based on the chemical composition and shape of their <b>spicules</b>.
+  </p>
+</section>
+
+<section class="slide" data-index="3" style="flex-direction: row; align-items: center; gap: 40px; display: flex;">
+    
+    <div style="flex: 1.2;">
+        <h4 class="level-tax2" style="font-size: 40px; margin-bottom: 20px;"><strong>Class Calcarea</strong></h4>
+        <ul style="font-size: 26px; line-height: 1.6;">
         <li>Skeleton composed of <b>calcium carbonate spicules</b>.</li>
         <li>Body form may be <b>vase-shaped</b>, <b>thin tubular networks</b>, or <b>irregular and massive</b>.</li>
         <li>Mostly <b>small-sized</b> sponges.</li>
@@ -208,165 +331,353 @@ The taxonomy of Phylum Porifera is mainly based on the chemical composition of t
         <li>Some species occur as deep as <b>800 m.</b></li>
         <li>Approximately <b>300 species</b> are known.</li>
       </ul>
-      <center><img src="Calcarea.png" width="600" length="500"></center>
+    </div>
+
+    <div style="flex: 1; display: flex; justify-content: center;">
+        <img src="../images/Calcarea.png" 
+             style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 2px solid var(--accent);">
+    </div>
+
 </section>
 
-  <section class="slide" data-index="4">
-      <h4 class="level-tax2"><strong>Class Hexactinellida (Hyalospongiae)</strong></h4>
-      <ul>
-        <li>Skeleton is distinctively composed of <b>six-rayed siliceous spicules</b> (slilca). </li>
+<section class="slide" data-index="4" style="flex-direction: row; align-items: center; gap: 40px; display: flex;">
+    
+    <div style="flex: 1.2;">
+        <h4 class="level-tax2" style="font-size: 40px; margin-bottom: 20px;"><strong>Class Hexactinellida</strong></h4>
+        <ul style="font-size: 26px; line-height: 1.6;">
+            <li>Skeleton is distinctively composed of <b>six-rayed siliceous spicules</b> (slilca). </li>
         <li>They are <b>exclusively marine</b> and typically inhabit <b>deep waters</b>, ranging from <b>25 to 8,500 m</b>.</li>
         <li>Most species attach to hard substrates, but some are found in soft sediments.</li>
         <li>Key examples include <u>Hexactinella</u>, <u>Euplectella</u> (Venus' flower basket), and <u>Farrea</u>. </li>
         <li>Approximately <b>500 species</b> are known in this class.</li>
-        <center><img src="Hexactinellida.png" width="800" length="700"></center>
-      </ul>
-  </section>
+        </ul>
+    </div>
 
-  <section class="slide" data-index="5">
-      <h4 class="level-tax2"><strong>Class Demospongiae</strong></h4>
-      <ul>
-        <li>Skeleton is typically composed of <b>silica spicules</b>, <b>spongin fibers</b>, or a combination of both; some species entirely lack a skeleton.</li>
-        <li>It is the largest class of sponges; there are about <b>4,200</b> species..</li>
-        <li>Exist in a variety of ocean environments, ranging from shallow to very deep water (<b>5,500 m</b> depth).</li>
-        <li>Includes the <b>freshwater sponges</b> (Family <b>Spongillidae</b>). </li>
-        <li>Body size and form are highly variable, ranging from small patches to massive structures over <b>2 m</b> wide.</li>
-      </ul>
-      <center><img src="Demospongiae.png" width="600" length="500"></center>
-  </section>
+    <div style="flex: 1; display: flex; justify-content: center;">
+        <img src="../images/Hexactinellida.png" 
+             style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 2px solid var(--accent);">
+    </div>
+
+</section>
+
+<section class="slide" data-index="5" style="flex-direction: row; align-items: center; gap: 40px; display: flex;">
     
+    <div style="flex: 1.2;">
+        <h4 class="level-tax2" style="font-size: 40px; margin-bottom: 20px;"><strong>Class Demospongiae</strong></h4>
+        <ul style="font-size: 26px; line-height: 1.6;">
+            <li>Skeleton: <b>Silica spicules</b>, <b>spongin fibers</b>, or both; some lack a skeleton.</li>
+            <li><b>Largest class:</b> Comprises about 80-90% of all sponges (~4,200 species).</li>
+            <li>Found in shallow to very deep waters (down to <b>5,500 m</b>).</li>
+            <li>Includes the <b>freshwater sponges</b> (Family: <i>Spongillidae</i>).</li>
+            <li>Highly variable: From small patches to massive structures over <b>2 m</b> wide.</li>
+        </ul>
+    </div> <div style="flex: 1; display: flex; justify-content: center;">
+        <img src="../images/Demospongiae.png" 
+             style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 2px solid var(--accent);">
+    </div>
 
-  <section class="slide" data-index="6">
-      <h4 class="level-tax2"><strong>Class Homoscleromorpha</strong></h4>
-      <ul>
-        <li>Skeletal absent or made up of simple siliceous <b>spicules</b></li>
+</section>
+
+<section class="slide" data-index="6" style="flex-direction: row; align-items: center; gap: 40px; display: flex;">
+    
+    <div style="flex: 1.2;">
+        <h4 class="level-tax2" style="font-size: 40px; margin-bottom: 20px;"><strong>Class Homoscleromorpha</strong></h4>
+        <ul style="font-size: 26px; line-height: 1.6;">
+            <li>Skeletal absent or made up of simple siliceous <b>spicules</b></li>
         <li><b>Exclusively marine</b> sponges</li>
         <li>Mostly found in <b>shallow coastal waters</b>, attached to hard substrates</li>
         <li><b>Body form</b> small, thin, encrusting, or cushion-like</li>
         <li>Have <b>true epithelial tissues with a basement membrane</b> to indicate advanced cellular organization</li>
         <li><b>Canal system</b> is <b>leuconoid</b></li>
         <li>Comprises approximately <b>100 species</b></li>
-      </ul>
-      <center><img src="Homoscleromorpha.png" width="600" length="500"></center>
-  </section>
-
-    <section class="slide" data-index="7">
-      <h2>Key Features</h2>
-      <ul>
-        <li>No true tissues or organs — only cells</li>
-        <li>Asymmetrical body but some are radially symmetrical</li>
-        <li>Mostly marine but some are freshwater (<u>Spongilla</u>)</li>
-        <li>Body surface contains numerous minute pores called <b>ostia</b> and few large pores called <b>osculum</b>.</li>
-        <li>Respire through general body surface</li>
-        <li>Reproduce asexually by budding and regeneration, but sexually by gametes</li>
-        <li>They are sessile, and mode of nutrition is holozoic</li>
-      </ul>
-    </section>
-
-    <section class="slide" data-index="8">
-      <h2>The Water Canal System</h2>
-      <p>Poriferans are nature’s water pumps. Water flows through <b>ostia</b> (tiny pores), travels through canals and chambers powered by <b>choanocytes</b>, and exits through a larger opening called the <b>osculum</b>.</p>
-      <center><img src="watercanalsystem.jpg" width="400" length="400"></center>
-    </section>
-
-    <section class="slide" data-index="9">
-        <h2>Specialized Cells</h2>
-        <ul>
-            <li><b>Choanocytes</b> — have tiny whip-like tails to move water and catch food </li>
-            <li><b>Amoebocytes</b> — carry nutrients around and help build the skeleton</li>
-            <li><b>Pinacocytes</b> — flat cells that form the outer layer and protect the sponge</li>
         </ul>
-        <center><img src="Cell-types-1.png" length=600px width=600px></center>
-    </section>
+    </div> <div style="flex: 1; display: flex; justify-content: center;">
+        <img src="../images/Homoscleromorpha.png" 
+             style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 2px solid var(--accent);">
+    </div>
 
-    <section class="slide" data-index="10">
-      <h2>Body Plan Types</h2>
-      <ul>
-        <li><b>Asconoid</b> — simplest tube-like design</li>
-        <li><b>Syconoid</b> — folded walls increase surface area</li>
-        <li><b>Leuconoid</b> — most complex, very efficient filtering</li>
-      </ul>
-      <center><img src=" body-plane.png" length=600px width=600px></center>
-    </section>
+</section>
 
-    <section class="slide" data-index="11">
-      <h2>Reproduction</h2>
-      <ul>
-        <li>Asexual — budding, fragmentation, gemmules </li>
-        <li>Sexual — most are hermaphrodites; produce swimming larvae</li>
-      </ul>
-      <center><img src="porifera-reproduction.png" length=600px width=600px></center>
-    </section>
+    <section class="slide" data-index="7" style="justify-content: flex-start; gap: 30px;">
+  <h2 style="text-align: center; border-bottom: none; font-size: 54px; margin-bottom: 10px;">
+    Key Features Summary
+  </h2>
+  
+  <p style="text-align: center; font-style: italic; color: var(--accent); font-size: 28px; margin-bottom: 20px;">
+    Distinctive characteristics of Phylum Porifera
+  </p>
 
-    <section class="slide" data-index="12">
-      <h2>Diversity Summary</h2>
-      <ul>
-        <li><b>Calcarea</b> — lime sponges (e.g., <u>Sycon</u>)</li>
-        <li><b>Hexactinellida</b> — glass sponges with delicate silica skeletons</li>
-        <li><b>Demospongiae</b> — the largest group of sponges; includes marine and freshwater species (like bath sponges).</li>
-<li><b>Homoscleromorpha</b> — small group of marine sponges; known for having simple siliceous spicules, leuconoid canal systems, and unique true tissues with a basement membrane.</li>      </ul>
-    </section>
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: auto auto; gap: 20px; width: 100%;">
+    
+    <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 15px; border-left: 5px solid var(--accent); box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
+      <h3 style="font-size: 28px; color: var(--accent); margin-bottom: 10px;">Organization</h3>
+      <p style="font-size: 22px; line-height: 1.4;">Cellular level only. No true tissues or organs.</p>
+    </div>
 
-    <section class="slide" data-index="13">
-      <h2>Ecological and Economic Importance</h2>
-      <ul>
-        <li>Filter water and help maintain clean marine ecosystems</li>
-        <li>Provide habitats and shelter for small marine animals</li>
-        <li>Some species are harvested for commercial use (e.g., bath sponges)</li>
-        <li>Are a potential source of unique <b>bioactive chemical compounds</b> for new medicines</li>
-      </ul>
-    </section>
+    <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 15px; border-left: 5px solid var(--accent); box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
+      <h3 style="font-size: 28px; color: var(--accent); margin-bottom: 10px;">Pore System</h3>
+      <p style="font-size: 22px; line-height: 1.4;"><b>Ostia</b> (Inlet) <br> <b>Osculum</b> (Outlet)</p>
+    </div>
 
-<section class="slide" data-index="14" style="text-align: center; justify-content: center; align-items: center;">
-      <div style="margin-bottom: 40px;">
-        <h1 style="font-size: 50px; margin-bottom: 10px;">Thank You!</h1>
-        <div style="height: 4px; width: 80px; background: var(--accent); margin: 0 auto; border-radius: 2px;"></div>
+    <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 15px; border-left: 5px solid var(--accent); box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
+      <h3 style="font-size: 28px; color: var(--accent); margin-bottom: 10px;">Respiration</h3>
+      <p style="font-size: 22px; line-height: 1.4;">Diffusion via the general body surface.</p>
+    </div>
+
+    <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 15px; border-left: 5px solid var(--accent); box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
+      <h3 style="font-size: 28px; color: var(--accent); margin-bottom: 10px;">Lifestyle</h3>
+      <p style="font-size: 22px; line-height: 1.4;"><b>Sessile</b> (fixed) with <b>Holozoic</b> nutrition.</p>
+    </div>
+
+    <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 15px; border-left: 5px solid var(--accent); box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
+      <h3 style="font-size: 28px; color: var(--accent); margin-bottom: 10px;">Reproduction</h3>
+      <p style="font-size: 22px; line-height: 1.4;">Asexual (Budding/Gemmules) & Sexual.</p>
+    </div>
+
+    <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 15px; border-left: 5px solid var(--accent); box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
+      <h3 style="font-size: 28px; color: var(--accent); margin-bottom: 10px;">Symmetry</h3>
+      <p style="font-size: 22px; line-height: 1.4;">Mostly <b>Asymmetrical</b>; some radial.</p>
+    </div>
+
+  </div>
+</section>
+
+    <section class="slide" data-index="8" style="justify-content: flex-start; gap: 40px;">
+  <h2 style="text-align: center; border-bottom: none; font-size: 54px;">Body Plan Complexity</h2>
+
+  <div style="display: flex; justify-content: space-around; align-items: flex-end; gap: 20px; flex: 1; padding-bottom: 40px;">
+    
+    <div style="flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; background: rgba(0, 180, 216, 0.05); padding: 20px; border-radius: 15px; border: 1px solid rgba(0, 180, 216, 0.3);">
+      <div style="background: var(--accent); color: var(--bg); padding: 5px 20px; border-radius: 20px; font-weight: bold; margin-bottom: 15px; font-size: 24px;">ASCONOID</div>
+      <p style="font-size: 20px; line-height: 1.3; margin-bottom: 20px;">Simplest tube-like design with a central spongocoel.</p>
+      <img src="../images/Asconoid.png" style="width: 100%; max-height: 250px; object-fit: contain; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));">
+    </div>
+
+    <div style="flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; background: rgba(0, 180, 216, 0.05); padding: 20px; border-radius: 15px; border: 1px solid rgba(0, 180, 216, 0.3);">
+      <div style="background: var(--accent); color: var(--bg); padding: 5px 20px; border-radius: 20px; font-weight: bold; margin-bottom: 15px; font-size: 24px;">SYCONOID</div>
+      <p style="font-size: 20px; line-height: 1.3; margin-bottom: 20px;">Folded walls and radial canals increase surface area.</p>
+      <img src="../images/Syconoid.png" style="width: 100%; max-height: 250px; object-fit: contain; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));">
+    </div>
+
+    <div style="flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; background: rgba(0, 180, 216, 0.1); padding: 20px; border-radius: 15px; border: 2px solid var(--accent); transform: scale(1.05); box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
+      <div style="background: #00f2ff; color: var(--bg); padding: 5px 20px; border-radius: 20px; font-weight: bold; margin-bottom: 15px; font-size: 24px;">LEUCONOID</div>
+      <p style="font-size: 20px; line-height: 1.3; margin-bottom: 20px;">Most complex system with highly efficient flagellated chambers.</p>
+      <img src="../images/Leuconoid.png" style="width: 100%; max-height: 250px; object-fit: contain; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));">
+    </div>
+
+  </div>
+  <div class="indicator-container">
+      <img src="../images/Indicator.png" class="indicator-img" alt="Navigation Indicator">
+    </div>
+</section>
+
+<section class="slide" data-index="9" style="justify-content: flex-start; gap: 20px;">
+  <h2 style="text-align: center; border-bottom: none; font-size: 54px; margin-bottom: 0;">Specialized Cells</h2>
+  <p style="text-align: center; color: var(--accent); font-size: 24px; margin-bottom: 20px;">The functional building blocks of a sponge</p>
+
+  <div style="display: flex; align-items: center; justify-content: center; gap: 40px; flex: 1;">
+    
+    <div style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      
+      <div style="background: rgba(0, 180, 216, 0.1); padding: 20px; border-radius: 12px; border-right: 5px solid #ff4d6d; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+        <h3 style="font-size: 28px; color: #ff4d6d; margin-bottom: 5px;">Choanocytes</h3>
+        <p style="font-size: 20px; line-height: 1.4;">"Collar Cells" with whip-like flagella that circulate water and trap food particles.</p>
       </div>
 
-      <div style="display: flex; flex-direction: column; gap: 30px; width: 100%;">
-        <div class="credit-box">
-          <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 14px; color: var(--accent); margin-bottom: 5px;">Submitted To</p>
-          <h2 style="font-size: 32px; margin: 0;">Mr. Devendra P. Dhakal</h2>
+      <div style="background: rgba(0, 180, 216, 0.1); padding: 20px; border-radius: 12px; border-right: 5px solid #ffb703; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+        <h3 style="font-size: 28px; color: #ffb703; margin-bottom: 5px;">Amoebocytes</h3>
+        <p style="font-size: 20px; line-height: 1.4;">Mobile cells that digest food, deliver nutrients, and can transform into other cell types.</p>
+      </div>
+
+      <div style="background: rgba(0, 180, 216, 0.1); padding: 20px; border-radius: 12px; border-right: 5px solid var(--accent); box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+        <h3 style="font-size: 28px; color: var(--accent); margin-bottom: 5px;">Pinacocytes</h3>
+        <p style="font-size: 20px; line-height: 1.4;">Leathery, plate-like cells that form the "skin" and regulate the sponge's surface area.</p>
+      </div>
+
+    </div>
+
+    <div style="flex: 1.2; display: flex; justify-content: center;">
+      <img src="../images/Cell-types-1.png" alt="Sponge Cell Types" 
+           style="max-width: 100%; max-height: 500px; object-fit: contain; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.6)); border-radius: 15px;">
+    </div>
+
+  </div>
+</section>
+
+<section class="slide" data-index="10" style="flex-direction: row; align-items: center; gap: 40px; display: flex;">
+    
+    <div style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+        <h2 style="border-bottom: none; font-size: 48px; margin-bottom: 0;">Reproduction</h2>
+
+        <div style="background: rgba(0, 180, 216, 0.08); padding: 25px; border-radius: 15px; border-left: 6px solid var(--accent); box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+            <h3 style="color: var(--accent); font-size: 32px; margin-bottom: 10px;">Asexual</h3>
+            <ul style="font-size: 24px; line-height: 1.4; list-style-type: '•'; padding-left: 20px;">
+                <li><b>Budding:</b> Small growths drop to form clones.</li>
+                <li><b>Fragmentation:</b> Broken pieces regenerate.</li>
+                <li><b>Gemmules:</b> Internal buds for survival.</li>
+            </ul>
         </div>
 
-        <div class="credit-box">
-          <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 14px; color: var(--accent); margin-bottom: 5px;">Presented By</p>
-          <h3 style="font-size: 28px; margin: 0; color: var(--text);">Bigyan Pokharel <span style="opacity: 0.6;">(_37)</span></h3>
+        <div style="background: rgba(255, 255, 255, 0.05); padding: 25px; border-radius: 15px; border-left: 6px solid #ff4d6d; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+            <h3 style="color: #ff4d6d; font-size: 32px; margin-bottom: 10px;">Sexual</h3>
+            <ul style="font-size: 24px; line-height: 1.4; list-style-type: '•'; padding-left: 20px;">
+                <li><b>Hermaphroditic:</b> Dual reproductive organs.</li>
+                <li><b>Larvae:</b> Swimming stage (Parenchymula).</li>
+                <li><b>Fertilization:</b> Water-borne sperm transfer.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div style="flex: 1.1; display: flex; justify-content: center;">
+        <img src="../images/porifera-reproduction.png" alt="Sponge Reproduction Cycle" 
+style="width: 600px; 
+                    height: 900px; 
+                    max-height: 80vh; 
+                    object-fit: contain; 
+                    border-radius: 12px; 
+                    filter: drop-shadow(0 15px 35px rgba(0,0,0,0.6));
+                    border: 1px solid rgba(255,255,255,0.1);">    </div>
+
+</section>
+
+<section class="slide" data-index="11" style="justify-content: flex-start; gap: 30px;">
+  <h2 style="text-align: center; border-bottom: none; font-size: 54px; margin-bottom: 0;">Diversity Summary</h2>
+  <p style="text-align: center; color: var(--accent); font-size: 26px; margin-bottom: 20px;">The Four Pillars of Phylum Porifera</p>
+
+  <div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: auto auto; gap: 25px; width: 100%; flex: 1;">
+    
+    <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 15px; border-top: 6px solid #00b4d8; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+      <h3 style="font-size: 32px; color: #00b4d8; margin-bottom: 10px;">Calcarea</h3>
+      <p style="font-size: 22px; line-height: 1.4;">
+        <b>Lime Sponges:</b> Calcium carbonate spicules. Small, vase-shaped, and found in shallow waters. <i>(e.g., Sycon)</i>
+      </p>
+    </div>
+
+    <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 15px; border-top: 6px solid #caf0f8; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+      <h3 style="font-size: 32px; color: #caf0f8; margin-bottom: 10px;">Hexactinellida</h3>
+      <p style="font-size: 22px; line-height: 1.4;">
+        <b>Glass Sponges:</b> Six-rayed silica skeletons. Exclusively marine and found in deep-sea habitats.
+      </p>
+    </div>
+
+    <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 15px; border-top: 6px solid #48cae4; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+      <h3 style="font-size: 32px; color: #48cae4; margin-bottom: 10px;">Demospongiae</h3>
+      <p style="font-size: 22px; line-height: 1.4;">
+        <b>Largest Group:</b> Silica or spongin fibers. 90% of all species. Includes both marine and freshwater sponges.
+      </p>
+    </div>
+
+    <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 15px; border-top: 6px solid #90e0ef; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+      <h3 style="font-size: 32px; color: #90e0ef; margin-bottom: 10px;">Homoscleromorpha</h3>
+      <p style="font-size: 22px; line-height: 1.4;">
+        <b>Advanced Tissues:</b> Simple silica spicules. Unique for having a true basement membrane and leuconoid systems.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<section class="slide" data-index="12" style="justify-content: flex-start; gap: 20px;">
+  <h2 style="text-align: center; border-bottom: none; font-size: 54px; margin-bottom: 0;">Ecological & Economic Importance</h2>
+  <p style="text-align: center; color: var(--accent); font-size: 26px; margin-bottom: 20px;">Why Sponges Matter to the World</p>
+
+  <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; width: 100%; flex: 1;">
+    
+    <div style="background: rgba(0, 180, 216, 0.1); padding: 20px; border-radius: 15px; display: flex; align-items: center; gap: 20px; border: 1px solid rgba(255,255,255,0.1);">
+       <img src="../images/Porifera.png" style="width: 140px; height: 140px; border-radius: 10px; object-fit: cover; border: 2px solid var(--accent);">
+       <div>
+         <h3 style="font-size: 28px; color: var(--accent); margin: 0;">Natural Filters</h3>
+         <p style="font-size: 20px; margin: 5px 0 0;">Sponges process thousands of liters of water daily, removing bacteria and toxins to keep reefs clean.</p>
+       </div>
+    </div>
+
+    <div style="background: rgba(0, 180, 216, 0.1); padding: 20px; border-radius: 15px; display: flex; align-items: center; gap: 20px; border: 1px solid rgba(255,255,255,0.1);">
+       <img src="../images/eco-habitat.png" style="width: 140px; height: 140px; border-radius: 10px; object-fit: cover; border: 2px solid var(--accent);">
+       <div>
+         <h3 style="font-size: 28px; color: var(--accent); margin: 0;">Marine Shelters</h3>
+         <p style="font-size: 20px; margin: 5px 0 0;">They provide complex 3D structures that serve as homes for crabs, shrimp, and small fish.</p>
+       </div>
+    </div>
+
+    <div style="background: rgba(0, 180, 216, 0.1); padding: 20px; border-radius: 15px; display: flex; align-items: center; gap: 20px; border: 1px solid rgba(255,255,255,0.1);">
+       <img src="../images/eco-medicine.png" style="width: 140px; height: 140px; border-radius: 10px; object-fit: cover; border: 2px solid var(--accent);">
+       <div>
+         <h3 style="font-size: 28px; color: var(--accent); margin: 0;">Bio-Medicine</h3>
+         <p style="font-size: 20px; margin: 5px 0 0;">Source of <b>bioactive compounds</b> used in cancer research and anti-viral drugs.</p>
+       </div>
+    </div>
+
+    <div style="background: rgba(0, 180, 216, 0.1); padding: 20px; border-radius: 15px; display: flex; align-items: center; gap: 20px; border: 1px solid rgba(255,255,255,0.1);">
+       <img src="../images/eco-bath.png" style="width: 140px; height: 140px; border-radius: 10px; object-fit: cover; border: 2px solid var(--accent);">
+       <div>
+         <h3 style="font-size: 28px; color: var(--accent); margin: 0;">Commercial Value</h3>
+         <p style="font-size: 20px; margin: 5px 0 0;">Sustainable harvesting for <b>natural bath sponges</b> and traditional decorative industries.</p>
+       </div>
+    </div>
+
+  </div>onclick="event.stopPropagation(); this.classList.toggle('revealed')">
+</section>
+
+  <section class="slide" data-index="13">
+       <center><h1>Do you know?</h21></center>
+      <div class="quiz-container">
+        <h3><div class="question">1. What is the maximum lifespan of a sea sponge?</div></h3>
+        <div class="answer-box" onclick="event.stopPropagation(); this.classList.toggle('revealed')">
+          <span class="placeholder">answer</span>
+          <span class="answer-text">15000 to 23000 years</span>
+        </div>
+      </div>
+
+      <div class="quiz-container">
+        <h3><div class="question">2. Why porifera are called "Ocean's Giant Vacuum"</div></h3>
+        <div class="answer-box" onclick="event.stopPropagation(); this.classList.toggle('revealed')">
+          <span class="placeholder">answer</span>
+          <span class="answer-text">1 sponge can filter 100,000 times its own volume of water daily.</span>
+        </div>
+      </div>
+
+      <div class="quiz-container">
+        <h3><div class="question">3. How porifera regulate their body perhaps they don't have brain?</div></h3>
+        <div class="answer-box" onclick="event.stopPropagation(); this.classList.toggle('revealed')">
+          <span class="placeholder">answer</span>
+          <span class="answer-text">Go search on google</span>
         </div>
       </div>
     </section>
+]
+
+<section class="slide" data-index="14" style="text-align: center; justify-content: center; align-items: center; padding: 60px;">
+  
+  <div style="margin-bottom: 50px;">
+    <h1 class="thank-you-title">Thank You!</h1>
+    <div style="height: 5px; width: 120px; background: var(--accent); margin: 0 auto; border-radius: 10px; box-shadow: 0 0 15px var(--accent);"></div>
+  </div>
+
+  <div class="credit-container">
+    <div class="credit-card">
+      <p style="text-transform: uppercase; letter-spacing: 3px; font-size: 16px; color: var(--accent); margin-bottom: 15px; font-weight: bold;">Submitted To</p>
+      <h2 style="font-size: 34px; margin: 0; color: #fff;">Mr. Devendra P. Dhakal</h2>
+      <p style="font-size: 18px; margin-top: 10px; opacity: 0.6;">Department of Zoology</p>
+    </div>
+
+    <div class="credit-card">
+      <p style="text-transform: uppercase; letter-spacing: 3px; font-size: 16px; color: var(--accent); margin-bottom: 15px; font-weight: bold;">Presented By</p>
+      <h2 style="font-size: 34px; margin: 0; color: #fff;">Bigyan Pokharel</h2>
+      <div style="display: inline-block; margin-top: 10px; background: var(--accent); color: #000; padding: 2px 12px; border-radius: 20px; font-weight: bold; font-size: 16px;">
+        Roll No: 44
+      </div>
+    </div>
+  </div>
+
+</section>
 
     <div class="controls">
       <button class="icon" onclick="prev()">◀ Prev</button>
-      <a href="https://pokharelbigyan.com.np/" style="text-decoration: none; color: inherit;"><button class="icon">← Back</button></a>
       <button class="icon" onclick="next()">Next ▶</button>
     </div>
     <div class="pager" id="pager">1 / 14</div>
   </div>
 
-  
-<script>
-      const slides = Array.from(document.querySelectorAll('.slide'));
-    let index = 0;
-
-    function update() {
-      slides.forEach((s,i)=>{ 
-        s.classList.remove('active','exit-left'); 
-        if(i<index) s.classList.add('exit-left');
-      });
-      slides[index].classList.add('active');
-      document.getElementById('pager').textContent = (index+1) + ' / ' + slides.length;
-    }
-
-    function next(){ if(index < slides.length-1){ index++; update(); }}
-    function prev(){ if(index > 0){ index--; update(); }}
-
-    document.addEventListener('keydown', e => {
-      if(e.key==='ArrowRight') next();
-      if(e.key==='ArrowLeft') prev();
-    });
-
-    update();
-</script>
+<script src="../web/script4.js"></script>
 </body>
 </html>
