@@ -146,6 +146,19 @@
             .hero h1 { font-size: 2.5rem; }
             .nav-links { display: none; }
         }
+
+        .section-title {
+    border-left: 4px solid #2ecc71;
+    padding-left: 15px;
+    line-height: 1;
+  }
+  .section-title a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
     </style>
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9969125472467556" crossorigin="anonymous"></script>
@@ -224,10 +237,19 @@
 </section>
 
 <section id="blog">
-    <h2><i class="fas fa-blog"></i> Technical Insights</h2>
+    <h2 class="section-title"><a href="blog/index.html"><i class="fas fa-terminal"></i> Technical Insights</a></h2>
     <p style="color: var(--text-dim); margin-bottom: 25px;">Sharing my journey in backend engineering and Node.js development.</p>
     
     <div class="blog-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+        
+        <article class="skill-card" style="text-align: left; padding: 20px;">
+            <small style="color: var(--primary); font-weight: bold;">JAN 2026</small>
+            <h3 style="margin: 10px 0;">Securing Node.js APIs with JWT</h3>
+            <p style="font-size: 0.9rem; color: var(--text-dim); margin-bottom: 15px;">
+                A deep dive into implementing JSON Web Tokens for stateless authentication in Express.js applications.
+            </p>
+            <a href="blog/jwt-auth.html" class="secret-link" style="color: var(--accent); font-weight: 600;">Read Article →</a>
+        </article>
 
         <article class="skill-card" style="text-align: left; padding: 20px;">
             <small style="color: var(--primary); font-weight: bold;">DEC 2025</small>
@@ -235,7 +257,7 @@
             <p style="font-size: 0.9rem; color: var(--text-dim); margin-bottom: 15px;">
                 Choosing the right database for your backend: When to go Relational vs. Document-based.
             </p>
-            <a href="postgres-vs-mongodb.html" class="secret-link" style="color: var(--accent); font-weight: 600;">Read Article →</a>
+            <a href="#" class="secret-link" style="color: var(--accent); font-weight: 600;">Coming Soon →</a>
         </article>
 
     </div>
