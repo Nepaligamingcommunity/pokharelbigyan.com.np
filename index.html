@@ -14,7 +14,7 @@
         :root {
             --primary: #007bff;
             --accent: #20c997;
-            --bg: #0f172a; /* Modern Dark Blue/Grey */
+            --bg: #0f172a; 
             --card-bg: #1e293b;
             --text-main: #f8fafc;
             --text-dim: #94a3b8;
@@ -32,7 +32,6 @@
             line-height: 1.6;
         }
 
-        /* Navigation */
         .navbar {
             background: rgba(15, 23, 42, 0.8);
             backdrop-filter: blur(10px);
@@ -51,13 +50,7 @@
             align-items: center;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            text-decoration: none;
-            color: var(--text-main);
-        }
-
+        .logo { font-size: 1.5rem; font-weight: 700; text-decoration: none; color: var(--text-main); }
         .logo span { color: var(--primary); }
 
         .nav-links a {
@@ -69,17 +62,9 @@
         }
 
         .nav-links a:hover { color: var(--primary); }
-
-        /* Container */
         .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
 
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 4rem 1rem;
-            margin-bottom: 3rem;
-        }
-
+        .hero { text-align: center; padding: 4rem 1rem; margin-bottom: 1rem; }
         .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; background: linear-gradient(90deg, #fff, #007bff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .hero p { color: var(--text-dim); font-size: 1.2rem; max-width: 600px; margin: 0 auto 2rem; }
 
@@ -92,11 +77,12 @@
             font-weight: 600;
             transition: 0.3s;
             display: inline-block;
+            border: none;
+            cursor: pointer;
         }
 
         .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 123, 255, 0.3); }
 
-        /* Cards/Sections */
         section {
             background: var(--card-bg);
             padding: 2.5rem;
@@ -109,10 +95,9 @@
         h2 { margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; font-size: 1.5rem; }
         h2 i { color: var(--primary); }
 
-        /* Skills Grid */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
             gap: 1rem;
         }
 
@@ -128,13 +113,11 @@
         .skill-card:hover { background: rgba(0, 123, 255, 0.1); border-color: var(--primary); }
         .skill-card i { font-size: 2rem; margin-bottom: 0.5rem; display: block; color: var(--accent); }
 
-        /* Links List */
         .link-list { list-style: none; }
         .link-list li { margin-bottom: 1rem; }
         .link-list a { color: var(--text-main); text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 10px; }
         .link-list a:hover { color: var(--primary); }
 
-        /* Ad Placeholder */
         .ad-slot {
             margin: 2rem 0;
             padding: 1rem;
@@ -142,6 +125,17 @@
             text-align: center;
             border-radius: 8px;
             min-height: 100px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.2);
+            color: white;
+            outline: none;
+            font-family: inherit;
         }
 
         footer { text-align: center; padding: 4rem 0; color: var(--text-dim); font-size: 0.9rem; }
@@ -154,7 +148,6 @@
     </style>
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9969125472467556" crossorigin="anonymous"></script>
-    
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DBJVM1BX0M"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -170,7 +163,7 @@
             <a href="#" class="logo">B.<span>Pokharel</span></a>
             <div class="nav-links">
                 <a href="#about">About</a>
-                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
                 <a href="#contact">Contact</a>
             </div>
         </div>
@@ -181,7 +174,7 @@
         <header class="hero">
             <h1>Bigyan Pokharel</h1>
             <p>Node.js Backend Developer & Academic Enthusiast. Focused on building scalable systems and high-performance APIs.</p>
-            <a href="#contact" class="btn">Get In Touch</a>
+            <a href="#contact-form" class="btn">Get In Touch</a>
         </header>
 
         <div class="ad-slot">
@@ -190,7 +183,7 @@
 
         <section id="about">
             <h2><i class="fas fa-user-circle"></i> About Me</h2>
-            <p>I am a highly motivated professional backend developer specializing in <b>Node.js</b>. My passion lies in building efficient, scalable, and robust server-side applications. Currently a +2 student, I bridge the gap between academic theory and industry-standard development.</p>
+            <p>I am a highly motivated professional backend developer specializing in <b>Node.js</b>. Currently a +2 student, I bridge the gap between academic theory and industry-standard development by building efficient, scalable server-side applications.</p>
         </section>
 
         <section id="skills">
@@ -205,18 +198,37 @@
             </div>
         </section>
 
+        <section id="projects">
+            <h2><i class="fas fa-project-diagram"></i> Featured Projects</h2>
+            <div class="skills-grid">
+                <div class="skill-card" style="text-align: left; grid-column: 1 / -1;">
+                    <h3 style="color: var(--primary);">QR Code Scanner and Generator</h3>
+                    <p style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 10px;">Node.js | Express</p>
+                    <p>A comprehensive web application for generating and scanning various 1D and 2D barcode formats with a clean, responsive interface.</p>
+                    <a href="https://github.com/Nepaligamingcommunity/QR-CODE-SCANNER-GENERATOR-WITH-NODEJSe" target="_blank" style="color: var(--accent); text-decoration: none; display: inline-block; margin-top: 15px; font-weight: bold;">View Code →</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact-form">
+            <h2><i class="fas fa-envelope-open-text"></i> Send a Message</h2>
+            <p style="color: var(--text-dim); margin-bottom: 20px;">Have a project in mind? Drop me a line below.</p>
+            <form action="https://formspree.io/f/meeeqpdg" method="POST" style="display: flex; flex-direction: column; gap: 15px;">
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="How can I help you?" rows="5" required></textarea>
+                <input type="text" name="_gotcha" style="display:none">
+                <button type="submit" class="btn">Send Message <i class="fas fa-paper-plane" style="margin-left: 10px;"></i></button>
+            </form>
+        </section>
+
         <section id="contact">
-            <h2><i class="fas fa-paper-plane"></i> Let's Connect</h2>
+            <h2><i class="fas fa-link"></i> Socials</h2>
             <ul class="link-list">
-                <li><a href="mailto:contact@pokharelbigyan.com.np"><i class="fas fa-envelope"></i> contact@pokharelbigyan.com.np</a></li>
                 <li><a href="https://discordapp.com/users/725707690814210099" target="_blank"><i class="fab fa-discord"></i> Discord: Bigyan</a></li>
                 <li><a href="https://wa.me/9779861935566" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp: Underscoore</a></li>
                 <li><a href="https://www.facebook.com/Bigyanpokharel037/" target="_blank"><i class="fab fa-facebook"></i> Facebook Profile</a></li>
             </ul>
         </section>
-
-        <div class="ad-slot">
-            </div>
 
     </div>
 
