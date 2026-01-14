@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Point Google specifically to your sitemap
+Sitemap: https://pokharelbigyan.com.np/sitemap.xml
+
+# Prevent crawling of specific system folders (optional)
+Disallow: /private/
+Disallow: /temp/
