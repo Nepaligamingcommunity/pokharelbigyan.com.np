@@ -1,9 +1,11 @@
 User-agent: *
 Allow: /
-
-# Point Google specifically to your sitemap
 Sitemap: https://pokharelbigyan.com.np/sitemap.xml
 
-# Prevent crawling of specific system folders (optional)
-Disallow: /private/
-Disallow: /temp/
+# Block AI scrapers to protect your original blog content
+User-agent: GPTBot
+Disallow: /
+User-agent: CCBot
+Disallow: /
+User-agent: anthropic-ai
+Disallow: /
